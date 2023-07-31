@@ -1,0 +1,85 @@
+<div class="container-fluid">
+    <div class="row justify-content-center text-center">
+        <h1>Usuarios</h1>
+        <i class="fa-solid fa-magnifying-glass-location"></i>
+    </div>
+    <div *ngIf="isShowForm" class="row justify-content-center mt-4">
+        <div class="col-4">
+            <form [formGroup]="form" (ngSubmit)="save()">
+                <div class="mb-3">
+                    <h3 *ngIf="!form.value.userId">Nuevo usuario</h3>
+                    <h3 *ngIf="form.value.userId">Editar usuario</h3>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nombre completo</label>
+                    <input formControlName="name" type="text" class="form-control" id="name">
+                    <validator [control]="form.controls['name']" name="Nombre completo"></validator>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input formControlName="email" type="email" class="form-control" id="email" placeholder="name@example.com">
+                    <validator [control]="form.controls['email']" name="Email"></validator>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input formControlName="password" type="password" class="form-control" id="password">
+                    <validator [control]="form.controls['password']" name="Contraseña"></validator>
+                </div>
+                <div class="mb-3 w-25">
+                    <label for="name" class="form-label">Edad</label>
+                    <input formControlName="age" type="number" min="0" max="150" class="form-control" id="age">
+                    <validator [control]="form.controls['age']" name="Edad"></validator>
+                </div>
+                <div class="mb-3">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-auto">
+                                <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Guardar</button>
+                            </div>
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-warning" (click)="hideAdd()">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="isSuccess" class="row justify-content-center mt-4">
+        <div class="col-6">
+            <div class="alert alert-success" role="alert">
+                Usuario guardado correctamente
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!isShowForm" class="row justify-content-start mt-4">
+        <div class="col-3">
+            <button class="btn btn-success" (click)="showAdd()">Agregar Usuario</button>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-8">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Correo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of users">
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.age }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>
+                            <button class="btn" (click)="edit(item.id)"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn btn-sm" (click)="delete(item.id)"><i class="fa-solid fa-trash-can"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+{
+  "users": [
+    {
+      "name": "Araceli",
+      "email": "jdoe@gmail.com",
+      "age": 25,
+      "password": "U29sdW1hczIwMjAl",
+      "id": 1
+    },
+    {
+      "name": "maria",
+      "email": "maria@sdfsdf.com",
+      "age": 30,
+      "password": "U29sdW1hczIwMjAl",
+      "id": 2
+    },
+    {
+      "name": "miguel",
+      "email": "miguel@gmail.com",
+      "age": 40,
+      "password": "U29sdW1hcyMlImQzNA==",
+      "id": 3
+    }
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "name": "admin"
+    },
+    {
+      "id": 2,
+      "name": "user"
+    }
+  ]
+}
